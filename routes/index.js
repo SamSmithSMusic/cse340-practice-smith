@@ -1,7 +1,9 @@
 import express from "express";
-import lesson1 from "../controllers/unit1.js";
+import controler from "../controllers/unit1.js";
 
 export const routes = express.Router();
 
-routes.get('/', lesson1.sam);
-routes.get('/wife', lesson1.wife);
+routes.get('/', controler.home);
+routes.get('/wife', controler.wife);
+routes.get('/about', controler.about);
+routes.get('/products', controler.products);
