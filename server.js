@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const PORT = process.env.PORT || 3000;
-const NODE_ENV = process.env.NODE_ENV || 'production';
+export const NODE_ENV = process.env.NODE_ENV || 'production';
 
 const app = express();
 app.set('view engine', 'ejs');
