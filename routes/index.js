@@ -18,10 +18,20 @@ routes.use((req, res, next) => {
 //    res.status(404).render('404', { title: "404 Page Not Found" }); 
 });
 
+//Global Handler
 routes.use((err, req, res, next) => {
-    console.error(err.stack);
-    if (err.status === 404) {
-        return res.status(404).render('404', { title: "404 - Page Not Found" });
-    }
-    res.status(500).render('500', { title: "500 - Server Error" });
+
+    console.error('Error occurred:', err.message);
+    console.error('Stack trace:', err.stack);
+
+    const status = err.status || 500;
+    const template = status === 404 ? '404' : '500';
+
+    const context = {
+        title: status === 404 ? 'Page Not Found' : 'Server Error',
+        error: err.message,
+        stack: err.stack
+    };
+
+    res.status(status).render(`errors/${template}`, context);
 });
