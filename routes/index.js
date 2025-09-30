@@ -9,7 +9,8 @@ routes.get('/wife', controler.wife);
 routes.get('/about', controler.about);
 routes.get('/products', controler.products);
 routes.get('/demo/:color/:food', unit2.demo);
-
+routes.get('/catalog', unit2.catalog);
+routes.get('/catalog/:courseId', unit2.course);
 
 routes.use((req, res, next) => {
     const err = new Error('Not Found');
