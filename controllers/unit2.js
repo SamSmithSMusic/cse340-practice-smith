@@ -1,4 +1,8 @@
-const demo = (req, res) => {
+
+const demo = (req, res) => { 
+    res.setHeader('X-Demo-Page', 'true');
+    res.setHeader('X-Middleware-Demo', 'This is a demo header');
+
     const title = 'Demo Page' ;
     const { color, food } = req.params;
     res.render('demo',{title, color, food});
