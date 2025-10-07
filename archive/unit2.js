@@ -1,4 +1,11 @@
-import { courses } from "../src/models/catalog/catalog.js";
+import {
+  getAllCourses,
+  getCourseById,
+  getSortedSections,
+  getCoursesByDepartment,
+} from "../src/models/catalog/catalog.js";
+
+const courses = getAllCourses();
 
 const demo = (req, res) => {
   res.setHeader("X-Demo-Page", "true");
