@@ -1,0 +1,46 @@
+<%- include('../partials/header') %>
+<main>
+  <div class="course-header">
+    <h1><%= title %></h1>
+    <p class="course-meta">Faculty at BYU-Idaho</p>
+  </div>
+
+  <div class="sections">
+    <div class="sections-header">
+      <h2>Available Instructors</h2>
+      <div class="sort-options">
+        <span>Sort by: </span>
+        <a href="/faculty" class="<%= currentSort === 'name' ? 'active' : '' %>"
+          >Name</a
+        >
+        <a
+          href="/faculty/?sort=department"
+          class="<%= currentSort === 'department' ? 'active' : '' %>"
+          >Department</a
+        >
+        <a
+          href="/faculty/?sort=title"
+          class="<%= currentSort === 'title' ? 'active' : '' %>"
+          >Title</a
+        >
+      </div>
+    </div>
+
+    <div class="section-list">
+      <% faculty.forEach(section => { %>
+      <div class="section-card">
+        <div class="section-time">
+          <a
+            href="/faculty/<%= section.name.toLowerCase().replace(/\s+/g, '-') %>"
+            ><%= section.name %></a
+          >
+        </div>
+        <div class="section-room">
+          <%= section.title %> • <%= section.office %> <%= section.department %>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+  </div>
+</main>
+<%- include('../partials/footer') %>

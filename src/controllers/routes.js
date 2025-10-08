@@ -2,6 +2,7 @@ import express from "express";
 import { addDemoHeaders } from "../middleware/demo/headers.js";
 import { catalogPage, courseDetailPage } from "./catalog/catalog.js";
 import { homePage, aboutPage, demoPage, testErrorPage } from "./index.js";
+import { facultyPage, facultyDetailPage } from "./faculty/faculty.js";
 import archive from "../../archive/unit1.js";
 
 export const routes = express.Router();
@@ -13,6 +14,8 @@ routes.get("/products", archive.products);
 routes.get("/demo/", addDemoHeaders, demoPage);
 routes.get("/catalog", catalogPage);
 routes.get("/catalog/:courseId", courseDetailPage);
+routes.get("/faculty", facultyPage);
+routes.get("/faculty/:facultyID", facultyDetailPage);
 routes.get("/test-error", testErrorPage);
 
 routes.use((req, res, next) => {
@@ -21,7 +24,6 @@ routes.use((req, res, next) => {
   next(err);
 });
 
-//Global Handler
 routes.use((err, req, res, next) => {
   console.error("Error occurred:", err.message);
   console.error("Stack trace:", err.stack);
@@ -33,6 +35,7 @@ routes.use((err, req, res, next) => {
     title: status === 404 ? "Page Not Found" : "Server Error",
     error: err.message,
     stack: err.stack,
+    NODE_ENV: process.env.NODE_ENV || "production",
   };
 
   res.status(status).render(`errors/${template}`, context);

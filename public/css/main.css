@@ -169,6 +169,14 @@ body {
                 color: #2c5aa0;
                 font-size: 1.1rem;
                 margin-bottom: 0.5rem;
+
+                a {
+                    color: #2c5aa0;
+                    text-decoration: none;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
             }
 
             .section-room,
