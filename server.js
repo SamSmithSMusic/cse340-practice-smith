@@ -1,4 +1,8 @@
-import { routes } from "./routes/index.js";
+import { routes } from "./src/controllers/routes.js";
+import {
+  addImportantLocalVariables,
+  addOptionalLocalVariables,
+} from "./src/middleware/global.js";
 import express from "express";
 import { fileURLToPath } from "url";
 import path from "path";
@@ -14,6 +18,7 @@ app.set("view engine", "ejs");
 
 app.use(express.static(path.join(__dirname, "public")));
 app.set("views", path.join(__dirname, "src/views"));
+<<<<<<< HEAD
 
 app.use((req, res, next) => {
   res.locals.NODE_ENV = NODE_ENV.toLowerCase() || "production";
@@ -58,6 +63,12 @@ app.use((req, res, next) => {
   next();
 });
 
+=======
+
+app.use(addImportantLocalVariables);
+app.use(addOptionalLocalVariables);
+
+>>>>>>> 1d2c813fbe2a2910c06963bf858daa8b5b286a15
 app.use("/", routes);
 
 //Web Socket setup for development environment
